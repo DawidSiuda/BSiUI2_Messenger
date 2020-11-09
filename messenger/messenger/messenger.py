@@ -12,28 +12,36 @@ def DownloadPublicKey():
     return
 
 def ChangePublicKey():
-    response = requests.get(serverAddress, json={'id': 1, 'name': 'Jessa'})
+    response = requests.put(serverAddress, json={'id': 1, 'name': 'Jessa'})
     print("Status code: ", response.status_code)
     print("Printing Entire Post Request")
-    print(response.json())
+    receivedJson = response.json()
+    print(receivedJson['userId'])
+    print(receivedJson['title'])
+    print(receivedJson['completed'])
     return
 
 def Register():
-    response = requests.get(serverAddress, json={'id': 1, 'name': 'Jessa'})
+    response = requests.post(serverAddress, json={'username': 'Dawid', 'password': 'sadasdasdasd', 'public_key' : 'dfgdfgdfgdfg'})
+    receivedJson = response.json()
+    if receivedJson['response'] == 'ok':
+        return 1
+
+
     print("Status code: ", response.status_code)
     print("Printing Entire Post Request")
     print(response.json())
     return
 
 def Login():
-    response = requests.get(serverAddress, json={'id': 1, 'name': 'Jessa'})
+    response = requests.post(serverAddress, json={'id': 1, 'name': 'Jessa'})
     print("Status code: ", response.status_code)
     print("Printing Entire Post Request")
     print(response.json())
     return
 
 def Logout():
-    response = requests.get(serverAddress, json={'id': 1, 'name': 'Jessa'})
+    response = requests.delete(serverAddress, json={'id': 1, 'name': 'Jessa'})
     print("Status code: ", response.status_code)
     print("Printing Entire Post Request")
     print(response.json())
@@ -48,6 +56,20 @@ def GetAllUsers():
 
 def GetUserPublicKey(user):
     response = requests.get(serverAddress, json={'id': 1, 'name': 'Jessa'})
+    print("Status code: ", response.status_code)
+    print("Printing Entire Post Request")
+    print(response.json())
+    return
+
+def GetWaitingMessages():
+    response = requests.get(serverAddress, json={'id': 1, 'name': 'Jessa'})
+    print("Status code: ", response.status_code)
+    print("Printing Entire Post Request")
+    print(response.json())
+    return
+
+def SendMessage(message):
+    response = requests.post(serverAddress, json={'id': 1, 'name': 'Jessa'})
     print("Status code: ", response.status_code)
     print("Printing Entire Post Request")
     print(response.json())
