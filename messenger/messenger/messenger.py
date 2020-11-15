@@ -1,14 +1,27 @@
 import sys
 import requests
 
-publicKey = ""
-serverAddress = 'https://jsonplaceholder.typicode.com/todos/1'
+class Key():
+    e: int
+    n: int
+    def __init__(self, aE, aN):
+        self.e = aE
+        self.n = aN
+
+
+# serverAddress = 'https://jsonplaceholder.typicode.com/todos/1'
+serverAddress ='http://54.93.36.163:8080'
+
+serverPublicKey = Key(0,0)
 
 def DownloadPublicKey():
-    response = requests.get(serverAddress, json={'id': 1, 'name': 'Jessa'})
+    response = requests.get(serverAddress + "/auth/key", json={'id': 1, 'name': 'Jessa'})
     print("Status code: ", response.status_code)
     print("Printing Entire Post Request")
-    print(response.json())
+    receivedJson = response.json()
+    print(receivedJson)
+    serverPublicKey.e = receivedJson['e']
+    serverPublicKey.n = receivedJson['n']
     return
 
 def ChangePublicKey():
